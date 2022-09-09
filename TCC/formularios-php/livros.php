@@ -124,5 +124,8 @@ include 'navbar.php';
         <button class="btn" type="button" onsubmit="">Voltar</button>     
     
     </form>
+    <?php 
+    include 'lista_livros.php';
+    ?>
 </body>
 </html>

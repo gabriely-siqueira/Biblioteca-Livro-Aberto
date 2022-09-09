@@ -1,9 +1,9 @@
 <?php
 $host = "127.0.0.1";
-$port = 3336;
+$port = 3306;
 $socket = "";
 $user = "root";
-$password = "1234";
+$password = "aluno01";
 $dbname = "livro_aberto";
 
 $conn = new mysqli($host, $user, $password, $dbname, $port, $socket)

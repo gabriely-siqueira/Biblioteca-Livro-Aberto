@@ -6,9 +6,7 @@ $sql = "SELECT * FROM livros";
 $query = mysqli_query($conn, $sql);
 ?>
 
-<?php 
-include 'navbar.php';
-?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,29 +17,62 @@ include 'navbar.php';
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <link href='https://unpkg.com/boxicons@2.1.2/dist/boxicons.js' rel='stylesheet'>
+        <style>
+#tabela{
+    width:920px;
+    margin:90px ;    
+    position: absolute;
+    right:0;          
+    top:0;           
+    text-align:left; 
+}
+#livros {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+#livros td, #livros th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#livros tr:nth-child(even){background-color: #f2f2f2;}
+
+#livros tr:hover {background-color: #ddd;}
+
+#livros th {
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
 </head>
 <body>
     
-<div>
-    <h1>Usuários cadastrados</h1>
+<div id="tabela">
+    <h1>Livros catalogados</h1>
 
-        <table>
-            <td>ID</td>
-            <td>Título</td>
-            <td>Material</td>
-            <td>Categoria</td>
-            <td>Autor</td>
-            <td>Editora</td>
-            <td>Ano</td>
-            <td>Série</td>
-            <td>ISBN</td>
-            <td>Exemplares</td>
-            <td class="text-center">Ação</td>
+        <table id="livros">
+            <td><strong>ID</strong></td>
+            <td><strong>Título</strong></td>
+            <td><strong>Material</strong></td>
+            <td><strong>Categoria</strong></td>
+            <td><strong>Autor</strong></td>
+            <td><strong>Editora</strong></td>
+            <td><strong>Ano</strong></td>
+            <td><strong>Série</strong></td>
+            <td><strong>ISBN</strong></td>
+            <td><strong>Exemplares</strong></td>
+            <td class="text-center"><strong>Ação</strong></td>
         </tr>
 
         <?php while ($dados = mysqli_fetch_array($query)) { ?>
             <tr>
-                <td><?php echo $dados['cod_livros'] ?></td>
+                <td><?php echo $dados['cod_livro'] ?></td>
                 <td><?php echo $dados['titulo'] ?></td>
                 <td><?php echo $dados['material'] ?></td>
                 <td><?php echo $dados['categoria'] ?></td>
@@ -58,7 +89,7 @@ include 'navbar.php';
         <?php } ?>
         </table>
         <br>
-    <a class="btn" href="livros.php">Cadastrar novo</a>
+    
 
 </div>
 <script>

@@ -14,4 +14,12 @@ include 'navbar.php';
     <link href='https://unpkg.com/boxicons@2.1.2/dist/boxicons.js' rel='stylesheet'>
 </head>
 
-    
+
+</head>
+<body>
+
+
+</body>
+</html>
+
+

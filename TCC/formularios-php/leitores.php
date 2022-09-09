@@ -75,8 +75,10 @@ include 'navbar.php';
         <button class="btn" type="submit" name="submit" onsubmit="">Cadastrar</button>            
         <button class="btn" type="button" onsubmit="">Voltar</button>     
     </form>
-
-
+<br>
+<?php 
+include 'lista_leitores.php';
+?>
 
 </body>
 
