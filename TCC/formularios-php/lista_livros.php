@@ -83,7 +83,7 @@ $query = mysqli_query($conn, $sql);
                 <td><?php echo $dados['isbn'] ?></td>
                 <td><?php echo $dados['exemplares'] ?></td>
                 <td colspan="2" ><a class='' href='edita_livros.php?cod_livros=<?php echo $dados['cod_livros'] ?>'>Editar</a>
-                <a class='' href='#' onclick='confirmar("<?php echo $dados['cod_livros'] ?>")'>Excluir</a></td>
+                <a class='' href='#' onclick='confirmar("<?php echo $dados['cod_livro'] ?>")'>Excluir</a></td>
             </tr>
            
         <?php } ?>
@@ -93,9 +93,9 @@ $query = mysqli_query($conn, $sql);
 
 </div>
 <script>
-    function confirmar(cod) {
+    function confirmar(cod_livro) {
         if (confirm('Você realmente deseja excluir esta linha?'))
-            location.href = 'exclui_livro.php?cod_livros=' + cod;
+            location.href = 'exclui_livros.php?cod_livro=' + cod_livro;
     }
 </script>
 </body>
