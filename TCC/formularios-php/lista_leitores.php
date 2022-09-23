@@ -81,8 +81,8 @@ $query = mysqli_query($conn, $sql);
                 <td><?php echo $dados['endereco'] ?></td>
                 <td><?php echo $dados['cpf'] ?></td>
                 <td><?php echo $dados['rg'] ?></td>
-                <td colspan="2" class="text-center"><a class='btn btn-info btn-sm' href='edita_leitores.php?cod_leitor=<?php echo $dados['cod_leitor'] ?>'>Editar</a>
-                <a class='btn btn-danger btn-sm' href='#' onclick='confirmar("<?php echo $dados['cod_leitor'] ?>")'>Excluir</a></td>
+                <td colspan="2" class="text-center"><a class='' href='edita_leitores.php?cod_leitor=<?php echo $dados['cod_leitor'] ?>'>Editar</a>
+                <a class='' href='#' onclick='confirmar("<?php echo $dados['cod_leitor'] ?>")'>Excluir</a></td>
              
             </tr>
            

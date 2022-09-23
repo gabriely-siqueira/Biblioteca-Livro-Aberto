@@ -4,7 +4,7 @@ include('conexao.php');
 
 $cod_leitor = $_GET['cod_leitor'];
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['editar'])) {
     $nome_leitor = $_POST['nome_leitor'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
@@ -13,22 +13,22 @@ if (isset($_POST['submit'])) {
     $cpf = $_POST['cpf'];
     $rg = $_POST['rg'];
 
-    $sql = "UPDATE users SET 
+    $sql = "UPDATE leitores SET 
                 nome_leitor='$nome_leitor', 
                 email='$email', 
                 telefone='$telefone',
-                data_nasc='$data_nasc' 
-                endereco='$endereco' 
-                cpf='$cpf' 
+                data_nasc='$data_nasc' ,
+                endereco='$endereco' ,
+                cpf='$cpf' ,
                 rg='$rg' 
 
             WHERE cod_leitor='$cod_leitor'";
-
+    echo $sql;
     mysqli_query($conn, $sql);
 
     if (mysqli_affected_rows($conn) > 0) {
         echo "<script> alert('Usuário alterado com sucesso.') </script>";
-        header("Location: listaUsuarios.php");
+        // header("Location: listaUsuarios.php");
     } else {
         echo "<script> alert('Ocorreu algum erro.') </script>";
     }
@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
 $sql = "SELECT * FROM leitores WHERE cod_leitor=$cod_leitor";
 $rs = mysqli_query($conn, $sql);
 $linha = mysqli_fetch_array($rs);
+
 ?>
 
 <?php 
@@ -54,31 +55,17 @@ include 'navbar.php';
 </head>
 
 <body>
-     <!--barra de navegação---------------------->   
-     <nav> 
-            <!--logo---------------------->
-            <a href="menu.php"  class="logo"><img src="img/book-1528240.jpg"></a>
-            
-            <!--menu------------------------------>
-            <ul>
-                <li><a href="./menu.php" class="active">Menu</a></li>
-                <li><a href="./livros.php"> Livros</a></li>
-                <li><a href="./leitores.php" > Leitores </a></li>
-                <li><a href="ajuda.php">Ajuda</a></li>
-                <li><a href="./emprestimo.php" title="">Empréstimo</a></li>
-                <li><a href="./login.php" title="">Sair</a></li>
-            </ul>
-        </nav>
+     
     <div> 
         <h1 id="titulo">Cadastro de Leitores</h1>
     </div>
-    <form name="cadastro_leitor" action="leitores.php" method="POST">
+    <form name="cadastro_leitor" action="edita_leitores.php" method="POST">
 
         <fieldset class="grupo">
             <!-- Campo do nome com legenda "nome" e css de classe "campo" -->
             <div class="campo">
                 <label for="nome"><strong>Nome</strong></label>
-                <input type="text" name="nome_leitor" id="nome_leitor" required>
+                <input type="text" name="nome_leitor" id="nome_leitor" value="<?php echo $linha['nome_leitor']; ?> " required>
             </div>
 
            
@@ -87,32 +74,32 @@ include 'navbar.php';
         <!-- Campo de email -->
         <div class="campo">
             <label for="email"><strong>Email</strong></label>
-            <input type="email" name="email" id="email" required>
+            <input type="email" name="email" id="email" value="<?php echo $linha['email']; ?> " required>
         </div>
 
         <div class="campo">
             <label for="telefone"><strong>Telefone</strong></label>
-            <input type="text" name="telefone" id="telefone" required>
+            <input type="text" name="telefone" id="telefone" value="<?php echo $linha['telefone']; ?> " required>
         </div>
         <div class="campo">
             <label for="dn"><strong>Data de nascimento</strong></label>
-            <input type="date" name="data_nasc" id="" required>
+            <input type="date" name="data_nasc" id="" value="<?php echo $linha['data_nasc']; ?> "required>
         </div>
         <div class="campo">
             <label for="endereco"><strong>Endereço</strong></label>
-            <input type="text" name="endereco" id="endereco" required>
+            <input type="text" name="endereco" id="endereco" value="<?php echo $linha['endereco']; ?> "required>
         </div>
         <div class="campo">
             <label for="cpf"><strong>CPF</strong></label>
-            <input type="text" name="cpf" id="cpf" required>
+            <input type="text" name="cpf" id="cpf" value="<?php echo $linha['cpf']; ?> " required>
         </div>
         <div class="campo">
             <label for="RG"><strong>RG</strong></label>
-            <input type="text" name="rg" id="RG" required>
+            <input type="text" name="rg" id="RG" value="<?php echo $linha['rg']; ?> " required>
         </div>
-
+    
         <!-- Botão para enviar o formulário -->
-        <button class="btn" type="submit" name="submit" onsubmit="">Cadastrar</button>            
+        <button class="btn" type="submit" name="editar" onsubmit="">Cadastrar</button>            
         <button class="btn" type="button" onsubmit="">Voltar</button>     
     </form>
 
