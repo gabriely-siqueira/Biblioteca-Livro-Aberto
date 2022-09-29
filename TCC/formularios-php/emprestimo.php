@@ -1,8 +1,8 @@
 <?php
 if (isset($_POST['submit'])) {
     include_once('conexao.php');
-    $nome_leitor = $_POST['cod_leitor'];
-    $email = $_POST['cod_livro'];
+    $cod_leitor = $_POST['cod_leitor'];
+    $cod_livro = $_POST['cod_livro'];
     $data_hoje= $_POST['data_hoje'];
     $data_entrega= $_POST['data_entrega'];
     
@@ -33,12 +33,12 @@ include 'navbar.php';
     <fieldset class="grupo">
         <div class="campo">
             
-        <label for="nome_leitor"><strong>Nome do leitor</strong></label>
+        <label for="cod_leitor"><strong>Nome do leitor</strong></label>
            <input type="text" name="cod_leitor" id="cod_leitor" required>          
         </div>
     </fieldset> 
     <div class="campo">
-        <label for="livro"><strong>Título do livro</strong></label>
+        <label for="cod_livro"><strong>Título do livro</strong></label>
         <input type="text" name="cod_livro" id="cod_livro" required>
     </div>
     <div class="campo">
