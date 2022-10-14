@@ -2,8 +2,7 @@
 <?php
 include('conexao.php');
 
-$sql = "SELECT * FROM leitores";
-$query = mysqli_query($conn, $sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -54,11 +53,16 @@ $query = mysqli_query($conn, $sql);
 </head>
 <body>
     
-
+<form action="lista_leitores.php" name="pesquisa_leitor">
+        <div class="search-box">
+            <input type="text" class="search-text" placeholder="pesquisar nome" name="pesquisa_leitor">
+            <button class="pesquisa"><i style="padding-top: 7px; padding-left: 2px; width: 50px; height: 20px" class='bx bx-search'></i></button>
+        </div>
+    </form>
 
 <div id="tabela">
     <h1>Leitores cadastrados</h1>
-
+    
         <table id="leitores">
             <td><strong>ID</strong></td>
             <td><strong>Nome</strong></td>
@@ -71,7 +75,13 @@ $query = mysqli_query($conn, $sql);
             <td class="text-center"><strong>Ação</strong></td>
         </tr>
 
-        <?php while ($dados = mysqli_fetch_array($query)) { ?>
+        <?php
+        if (isset($_GET['pesquisa_leitor'])) {
+
+            $pesquisa_leitor = "%" . trim($_GET['pesquisa_leitor']) . "%";
+            $sql = "SELECT * FROM leitores WHERE nome_leitor LIKE '$pesquisa_leitor'";
+            $query = mysqli_query($conn, $sql);
+        while ($dados = mysqli_fetch_array($query)) { ?>
             <tr>
                 <td><?php echo $dados['cod_leitor'] ?></td>
                 <td><?php echo $dados['nome_leitor'] ?></td>
@@ -86,7 +96,25 @@ $query = mysqli_query($conn, $sql);
              
             </tr>
            
-        <?php } ?>
+        <?php }}
+        else {
+            $sql = "SELECT * FROM leitores";
+            $query = mysqli_query($conn, $sql);
+        while ($dados = mysqli_fetch_array($query)) { ?>
+            <tr>
+                <td><?php echo $dados['cod_leitor'] ?></td>
+                <td><?php echo $dados['nome_leitor'] ?></td>
+                <td><?php echo $dados['email'] ?></td>
+                <td><?php echo $dados['telefone'] ?></td>
+                <td><?php echo $dados['data_nasc'] ?></td>
+                <td><?php echo $dados['endereco'] ?></td>
+                <td><?php echo $dados['cpf'] ?></td>
+                <td><?php echo $dados['rg'] ?></td>
+                <td colspan="2" class="text-center"><a class='' href='edita_leitores.php?cod_leitor=<?php echo $dados['cod_leitor'] ?>'>Editar</a>
+                <a class='' href='#' onclick='confirmar("<?php echo $dados['cod_leitor'] ?>")'>Excluir</a></td>
+             
+            </tr>
+       <?php }}?>
         </table>
         <br>
     
