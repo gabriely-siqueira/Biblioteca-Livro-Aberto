@@ -83,11 +83,11 @@ include 'navbar.php';
         </div>
         <div class="campo">
             <label for="dn"><strong>Data de nascimento</strong></label>
-            <input type="date" name="data_nasc" id="" value="<?php echo $linha['data_nasc']; ?> "required>
+            <input type="date" name="data_nasc" id="" value="<?php echo $linha['data_nasc']; ?> " required>
         </div>
         <div class="campo">
             <label for="endereco"><strong>Endereço</strong></label>
-            <input type="text" name="endereco" id="endereco" value="<?php echo $linha['endereco']; ?> "required>
+            <input type="text" name="endereco" id="endereco" value="<?php echo $linha['endereco']; ?> " required>
         </div>
         <div class="campo">
             <label for="cpf"><strong>CPF</strong></label>
@@ -100,7 +100,8 @@ include 'navbar.php';
     
 
         <!-- Botão para enviar o formulário -->
-        <button class="btn" type="submit" name="editar" onsubmit="">Cadastrar</button>            
+        <button class="btn" type="submit" name="editar" onsubmit="">Salvar</button>  
+                  
         <button class="btn" type="button"  onsubmit="">Voltar</button>     
     </form>
 

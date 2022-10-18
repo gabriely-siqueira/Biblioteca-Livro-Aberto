@@ -13,7 +13,10 @@ if (isset($_POST['submit'])) {
     VALUES ('$nome_leitor','$email','$telefone','$data_nasc','$endereco','$cpf','$rg')");
 
 }
+
+
 ?>
+
 <?php 
 include 'navbar.php';
 ?>
@@ -76,9 +79,6 @@ include 'navbar.php';
         <button class="btn" type="button" onsubmit="">Voltar</button>     
     </form>
 <br>
-<?php 
-include 'lista_leitores.php';
-?>
 
 </body>
 

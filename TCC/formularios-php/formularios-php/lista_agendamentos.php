@@ -1,8 +1,9 @@
 <html>
 <?php
 include('conexao.php');
-?>
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -10,11 +11,13 @@ include('conexao.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Livros</title>
+    <title>Lista de leitores</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <link href='https://unpkg.com/boxicons@2.1.2/dist/boxicons.js' rel='stylesheet'>
-        <style>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+     
+     <style>
 #tabela{
     width:1200px;
     margin:150px ;    
@@ -23,23 +26,23 @@ include('conexao.php');
     top:0;           
     text-align:left; 
 }
-#livros {
+#emprestimos {
   border-collapse: collapse;
   width: 100%;
   background-color: #ddd;
 
 }
 
-#livros td, #livros th {
-    border: 2px solid #59429d;
+#emprestimos td, #emprestimos th {
+  border: 2px solid #59429d;
   padding: 8px;
 }
 
-#livros tr:nth-child(even){background-color: #f2f2f2;}
+#emprestimos tr:nth-child(even){background-color: #f2f2f2;}
 
-#livros tr:hover {background-color: #E6E6FA;}
+#emprestimos tr:hover {background-color: #E6E6FA;}
 
-#livros th {
+#emprestimos th {
 
   padding-top: 12px;
   padding-bottom: 12px;
@@ -47,6 +50,7 @@ include('conexao.php');
   background-color: #04AA6D;
   color: white;
 }
+
 .button2 {
   background-color: #2a9df4;
   border: 1px solid #13aa52;
@@ -160,17 +164,20 @@ include('conexao.php');
   transform: translate(-50%, -50%);
 }
 
-</style>
 
+</style>
 <?php 
 include 'navbar.php';
 ?>
+
 </head>
+
 <body>
-<form action="lista_livros.php" name="pesquisa_livro">
+    
+<form action="lista_agendamentos.php" name="pesquisa_emprestimo">
 <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm"  placeholder="pesquisar" name="pesquisa_livro">
+      <input type="text" class="searchTerm"  placeholder="pesquisar" name="pesquisa_emprestimo">
       <button  class="searchButton">
         <i class="fa fa-search"></i>
      </button>
@@ -181,90 +188,83 @@ include 'navbar.php';
     </form>
 
 <div id="tabela">
-    <h1>Livros catalogados</h1>
-
-        <table id="livros">
+    <h1>Agendamentos cadastrados</h1>
+    
+        <table id="emprestimos">
             <td><strong>ID</strong></td>
-            <td><strong>Título</strong></td>
-            <td><strong>Material</strong></td>
-            <td><strong>Categoria</strong></td>
-            <td><strong>Autor</strong></td>
-            <td><strong>Editora</strong></td>
-            <td><strong>Ano</strong></td>
-            <td><strong>Série</strong></td>
-            <td><strong>ISBN</strong></td>
-            <td><strong>Exemplares</strong></td>
+            <td><strong>Nome</strong></td>
+            <td><strong>Livro</strong></td>
+            <td><strong>Data do empréstimo</strong></td>
+            <td><strong>Data de entrega</strong></td>
+        
             <td class="text-center"><strong>Ação</strong></td>
         </tr>
 
         <?php
-        if (isset($_GET['pesquisa_livro'])) {
-            $pesquisa_livro = "%" . trim($_GET['pesquisa_livro']) . "%";
-            $sql = "SELECT * FROM livros WHERE titulo LIKE '$pesquisa_livro'";
+        if (isset($_GET['pesquisa_emprestimo'])) {
+
+            $pesquisa_emprestimo = "%" . trim($_GET['pesquisa_emprestimo']) . "%";
+            $sql = "select livros.titulo as titulo, leitores.nome_leitor as nome_leitor, emprestimos.cod_emprestimo as cod_emprestimo, emprestimos.data_entrega as data_entrega, emprestimos.data_hoje as data_hoje 
+            from emprestimos, leitores, livros where emprestimos.cod_livro = livros.cod_livro and emprestimos.cod_leitor = leitores.cod_leitor;'";
             $query = mysqli_query($conn, $sql);
-         while ($dados = mysqli_fetch_array($query)) { ?>
+        while ($dados = mysqli_fetch_array($query)) { 
+            ?>
+        
             <tr>
+                <td><?php echo $dados['cod_emprestimo'] ?></td>
+                <td><?php echo $dados['nome_leitor'] ?></td>
                 <td><?php echo $dados['cod_livro'] ?></td>
-                <td><?php echo $dados['titulo'] ?></td>
-                <td><?php echo $dados['material'] ?></td>
-                <td><?php echo $dados['categoria'] ?></td>
-                <td><?php echo $dados['autor'] ?></td>
-                <td><?php echo $dados['editora'] ?></td>
-                <td><?php echo $dados['ano'] ?></td>
-                <td><?php echo $dados['serie'] ?></td>
-                <td><?php echo $dados['isbn'] ?></td>
-                <td><?php echo $dados['exemplares'] ?></td>
+                <td><?php echo $dados['data_hoje'] ?></td>
+                <td><?php echo $dados['data_entrega'] ?></td>
+        
                 <td colspan="2" class="">    
                 <button class="button2">
-                <a class='editar' href='edita_livros.php?cod_livro=<?php echo $dados['cod_livro'] ?>'>Editar</a>
+                <a class='editar' href='edita_emprestimo.php?cod_emprestimo=<?php echo $dados['cod_emprestimo'] ?>'>Editar</a>
                 </button>
                 <br>
                 <br>
                 <button class="button3"> 
-                 <a class='excluir' href='#' onclick='confirmar("<?php echo $dados['cod_livro'] ?>")'>Excluir</a>
+                 <a class='excluir' href='#' onclick='confirmar("<?php echo $dados['cod_emprestimo'] ?>")'>Excluir</a>
                 </button>
                 </td>
+    
+             
             </tr>
            
-            <?php }}
-            else{
-                $sql = "SELECT * FROM livros";
-                $query = mysqli_query($conn, $sql);
-            while ($dados = mysqli_fetch_array($query)) { ?>
-             <tr>
-                <td><?php echo $dados['cod_livro'] ?></td>
+        <?php }}
+        else {
+            $sql = $sql = "select livros.titulo as titulo, leitores.nome_leitor as nome_leitor, emprestimos.cod_emprestimo as cod_emprestimo, emprestimos.data_entrega as data_entrega, emprestimos.data_hoje as data_hoje 
+            from emprestimos, leitores, livros where emprestimos.cod_livro = livros.cod_livro and emprestimos.cod_leitor = leitores.cod_leitor;";
+            $query = mysqli_query($conn, $sql);
+        while ($dados = mysqli_fetch_array($query)) { ?>
+            <tr>
+                <td><?php echo $dados['cod_emprestimo'] ?></td>
+                <td><?php echo $dados['nome_leitor'] ?></td>
                 <td><?php echo $dados['titulo'] ?></td>
-                <td><?php echo $dados['material'] ?></td>
-                <td><?php echo $dados['categoria'] ?></td>
-                <td><?php echo $dados['autor'] ?></td>
-                <td><?php echo $dados['editora'] ?></td>
-                <td><?php echo $dados['ano'] ?></td>
-                <td><?php echo $dados['serie'] ?></td>
-                <td><?php echo $dados['isbn'] ?></td>
-                <td><?php echo $dados['exemplares'] ?></td>
+                <td><?php echo $dados['data_hoje'] ?></td>
+                <td><?php echo $dados['data_entrega'] ?></td>
+        
                 <td colspan="2" class="">    
                 <button class="button2">
-                <a class='editar' href='edita_livros.php?cod_livro=<?php echo $dados['cod_livro'] ?>'>Editar</a>
+                <a class='editar' href='edita_emprestimo.php?cod_emprestimo=<?php echo $dados['cod_emprestimo'] ?>'>Editar</a>
                 </button>
                 <br>
                 <br>
                 <button class="button3"> 
-                 <a class='excluir' href='#' onclick='confirmar("<?php echo $dados['cod_livro'] ?>")'>Excluir</a>
+                 <a class='excluir' href='#' onclick='confirmar("<?php echo $dados['cod_emprestimo'] ?>")'>Excluir</a>
                 </button>
                 </td>
+    
             </tr>
-            <?php }}?>
-        </table>
-
+       <?php }}?>
         </table>
         <br>
     
-
 </div>
 <script>
-    function confirmar(cod_livro) {
+    function confirmar(cod_leitor) {
         if (confirm('Você realmente deseja excluir esta linha?'))
-            location.href = 'exclui_livros.php?cod_livro=' + cod_livro;
+            location.href = 'exclui_emprestimo.php?cod_emprestimo=' + cod_emprestimo;
     }
 </script>
 </body>

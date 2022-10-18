@@ -33,7 +33,7 @@ nav ul{
      font-weight: bold;
      color:#2d2a2a;
     }
-nav ul li a{
+nav ul li a {
   color: black;
   text-decoration: none;
   font-size: 18px;
@@ -48,7 +48,9 @@ nav ul li a.active,
 nav ul li a:hover{
   color: #111;
   background: #9b7eeb;
-}
+} 
+
+
 nav .menu-btn i{
   color: black;
   font-size: 22px;
@@ -61,11 +63,67 @@ input[type="checkbox"]{
 .logo{
    margin-left: -35px
    
-   
-   
+}
+
+/* The dropdown container */
+.dropdown {
+  margin-top: 20px;
+  float: left;
+  overflow: hidden;
+  font-family:sans-serif;
 
 }
 
+/* Dropdown button */
+.dropdown .dropbtn {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  border:none!important;
+  background-color: white!important;
+  font-family:Poppins!important;
+  
+}
+.dropbtn:hover{
+  color: #111;
+  background: #9b7eeb!important;
+} 
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  color:black;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
       </style>
    </head>
    <body>
@@ -78,11 +136,23 @@ input[type="checkbox"]{
          <i class="fas fa-bars"></i>
          </label>
          <ul>
-         <li><a href="./menu.php" >Menu</a></li>
+         <li><a href="./menu.php">Menu</a></li>
                 <li><a href="./livros.php"> Livros</a></li>
                 <li><a href="./leitores.php" > Leitores </a></li>
-                <li><a href="ajuda.php">Ajuda</a></li>
                 <li><a href="./emprestimo.php" title="">Empréstimo</a></li>
+               <br>
+               <br>
+               <div>
+                 <div class="dropdown">
+                   <button class="dropbtn">Lista</button>
+                   <div class="dropdown-content">
+                    <a href="./lista_leitores.php">Lista de leitores</a>
+                    <a href="./lista_livros.php">Lista de livros</a>
+                    <a href="./lista_agendamentos.php">Lista de agendamentos</a>
+                    </div>
+                  </div>
+</div>
+                
                 <li><a href="./login.php" title="">Sair</a></li>
          </ul>
       </nav>

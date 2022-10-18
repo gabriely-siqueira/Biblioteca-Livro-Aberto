@@ -1,12 +1,18 @@
 <?php
 if (isset($_POST['submit'])) {
     include_once('conexao.php');
-    $cod_leitor = $_POST['cod_leitor'];
-    $cod_livro = $_POST['cod_livro'];
+    $nome_leitor = $_POST['nome_leitor'];
+    $titulo = $_POST['titulo'];
     $data_hoje= $_POST['data_hoje'];
     $data_entrega= $_POST['data_entrega'];
-    
-
+    $sql2 = " select cod_leitor from leitores where nome_leitor = '$nome_leitor'";
+    $query2 = mysqli_query($conn, $sql2);
+        ($dados = mysqli_fetch_array($query2));
+    $cod_leitor = $dados['cod_leitor'];
+    $sql2 = " select cod_livro from livros where titulo = '$titulo'";
+    $query2 = mysqli_query($conn, $sql2);
+        ($dados = mysqli_fetch_array($query2));
+    $cod_livro = $dados['cod_livro'];
     $result = mysqli_query($conn,"INSERT INTO emprestimos(cod_leitor,cod_livro,data_hoje,data_entrega) 
     VALUES ('$cod_leitor','$cod_livro','$data_hoje','$data_entrega')");
 
@@ -34,12 +40,12 @@ include 'navbar.php';
         <div class="campo">
             
         <label for="cod_leitor"><strong>Nome do leitor</strong></label>
-           <input type="text" name="cod_leitor" id="cod_leitor" required>          
+           <input type="text" name="nome_leitor" id="nome_leitor" required>          
         </div>
     </fieldset> 
     <div class="campo">
         <label for="cod_livro"><strong>Título do livro</strong></label>
-        <input type="text" name="cod_livro" id="cod_livro" required>
+        <input type="text" name="titulo" id="titulo" required>
     </div>
     <div class="campo">
         <label for="hoje"><strong>Data de hoje</strong></label>
@@ -55,30 +61,7 @@ include 'navbar.php';
     
 </form>
 
-<?php 
-include 'lista_emprestimo.php';
-?>
 
-<?php  /*<select>  <option>Selecione</option>
-             $sql = "select * from leitores";
-            $resultado = mysqli_query($conn, $sql);
-            while ($linha = mysqli_fetch_array($resultado)) { ?>
-                <option value=<?php echo $linha['cod_leitor'] ?>>
-                    <?php echo $linha['nome_leitor'] . 'iii' ; ?>
-                </option>
-                <option>djfjdff</option>
-            
-            <BR>      }     
-            
-            <?php $sql = "select * from leitores ";
-            $resultado = mysqli_query($conn, $sql);
-            while ($linha = mysqli_fetch_array($resultado)) { ?>
-                <label>Medicamento: <select class='form-control' name="idremedio"></label>
-            <option>Selecione</option>
-                <option value=<?php echo $linha['cod_leitor'] ?>>
-                    <?php echo $linha['nome_leitor'] ; ?>
-                </option> <?php echo $linha['nome_leitor']; ?>
-            <?php } ?>
-        </select><?php  */   ?> 
+
 </body>
 </html>
