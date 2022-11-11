@@ -57,7 +57,7 @@ include 'navbar.php';
 <body>
      
     <div> 
-        <h1 id="titulo">Cadastro de Leitores</h1>
+        <h1 id="titulo">Editar leitor</h1>
     </div>
     <form name="cadastro_leitor" form action="edita_leitores.php?cod_leitor=<?php echo $cod_leitor ?>" method="POST">
 
@@ -102,7 +102,7 @@ include 'navbar.php';
         <!-- Botão para enviar o formulário -->
         <button class="btn" type="submit" name="editar" onsubmit="">Salvar</button>  
                   
-        <button class="btn" type="button"  onsubmit="">Voltar</button>     
+        <a href="lista_leitores.php"><button class="btn" type="button" onsubmit="">Voltar</button> </a>       
     </form>
 
 

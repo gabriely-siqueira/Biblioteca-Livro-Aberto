@@ -40,15 +40,16 @@ include 'navbar.php';
         <div class="campo">
             
         <label for="cod_leitor"><strong>Nome do leitor</strong></label>
-           <input type="text" name="nome_leitor" id="nome_leitor" required>          
+           <input type="text" name="nome_leitor" id="nome_leitor" onkeyup="carregar_leitor(this.value)" required>          
+           <span id="resultado_pesquisa"></span>
         </div>
     </fieldset> 
     <div class="campo">
         <label for="cod_livro"><strong>Título do livro</strong></label>
-        <input type="text" name="titulo" id="titulo" required>
+        <input type="text" name="titulo" id="titulo" onkeyup="carregar_livro(this.value)" required>
     </div>
     <div class="campo">
-        <label for="hoje"><strong>Data de hoje</strong></label>
+        <label for="hoje"><strong>Data do emprestimo</strong></label>
         <input type="date" name="data_hoje" id="data_hoje" required>
     </div>
     <div class="campo">
@@ -57,10 +58,10 @@ include 'navbar.php';
     </div>
 
     <button class="btn" type="submit" name="submit" onsubmit="">Cadastrar</button>         
-        <button class="btn" type="button" onsubmit="">Voltar</button>     
-    
+          
+        <a href="menu.php"><button class="btn" type="button" onsubmit="">Voltar</button> </a>
 </form>
-
+<script src="js/custon.js"></script>
 
 
 </body>

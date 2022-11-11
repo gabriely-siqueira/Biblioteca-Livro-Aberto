@@ -75,8 +75,9 @@ include 'navbar.php';
         </div>
 
         <!-- Botão para enviar o formulário -->
-        <button class="btn" type="submit" name="submit" onsubmit="">Cadastrar</button>            
-        <button class="btn" type="button" onsubmit="">Voltar</button>     
+        <a href="/lista_leitores.php"><button class="btn" type="submit" name="submit" onsubmit="">Cadastrar</button> </a>  
+                  
+        <a href="menu.php"><button class="btn" type="button" onsubmit="">Voltar</button> </a>  
     </form>
 <br>
 

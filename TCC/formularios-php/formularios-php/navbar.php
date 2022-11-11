@@ -146,9 +146,9 @@ input[type="checkbox"]{
                  <div class="dropdown">
                    <button class="dropbtn">Lista</button>
                    <div class="dropdown-content">
-                    <a href="./lista_leitores.php">Lista de leitores</a>
                     <a href="./lista_livros.php">Lista de livros</a>
-                    <a href="./lista_agendamentos.php">Lista de agendamentos</a>
+                    <a href="./lista_leitores.php">Lista de leitores</a>
+                    <a href="./lista_emprestimos.php">Lista de empréstimos</a>
                     </div>
                   </div>
 </div>

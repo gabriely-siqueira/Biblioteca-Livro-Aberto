@@ -121,7 +121,7 @@ include 'navbar.php';
         </div>
 
         <button class="btn" type="submit" name="submit" onsubmit="">Cadastrar</button>        
-        <button class="btn" type="button" onsubmit="">Voltar</button>     
+        <a href="menu.php"><button class="btn" type="button" onsubmit="">Voltar</button> </a>  
     
     </form>
  

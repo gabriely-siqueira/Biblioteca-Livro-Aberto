@@ -1,5 +1,10 @@
 
 <!DOCTYPE html>
+<?php
+include('conexao.php');
+
+
+?>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -16,14 +21,36 @@
           <img src="img/avatar.png" alt="">
         <h2 class="login__title">Entrar no Livro Aberto</h2>
         <form action="menu.php" method="POST" class="login__form">
-          <input class="login__input" type="email" placeholder="e-mail" />
+          <input class="login__input" name="usuario" type="text" placeholder="Nome usuário" />
           <span class="login__input-border"></span>
-          <input class="login__input" type="password" placeholder="senha"/>
+          <input class="login__input" name="senha" type="password"  placeholder="Senha"/>
           <span class="login__input-border"></span>
-          <button class="login__submit">Login</button>
+          <input class="login__submit" type="submit" value="Entrar" name="Entrar"><br>
+         
           
         </form>
       </div>
     </main>
+    <?php
+$usuario = $_POST['usuario'];
+$entrar = $_POST['entrar'];
+$senha = md5($_POST['senha']);
+
+  if (isset($entrar)) {
+
+    $verifica = mysql_query("SELECT * FROM funcionario WHERE usuario =
+    '$usuario' AND senha = '$senha'") or die("erro ao selecionar");
+      if (mysql_num_rows($verifica)<=0){
+        echo"<script language='javascript' type='text/javascript'>
+        alert('Usuário e/ou senha incorretos');window.location
+        .href='login.php';</script>";
+        die();
+      }else{
+        setcookie("usuario",$usuario);
+        header("Location:menu.php");
+      }
+  }
+?>
   </body>
+  
 </html>

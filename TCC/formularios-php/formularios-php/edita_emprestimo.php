@@ -52,7 +52,7 @@ include 'navbar.php';
 <body>
      
     <div> 
-        <h1 id="titulo">Agendamento de empréstimo</h1>
+        <h1 id="titulo">Editar empréstimo</h1>
     </div>
     <form name="cadastro_emprestimo" form action="edita_emprestimo.php?cod_emprestimo=<?php echo $cod_emprestimo ?>" method="POST">
 
@@ -60,27 +60,27 @@ include 'navbar.php';
         <div class="campo">
             
         <label for="nome_leitor"><strong>Nome do leitor</strong></label>
-           <input type="text" name="cod_leitor" id="cod_leitor"  value="<?php echo $linha['cod_leitor']; ?> "  required>          
+           <input type="text" name="cod_leitor" id="cod_leitor" required>          
         </div>
     </fieldset> 
     <div class="campo">
         <label for="livro"><strong>Título do livro</strong></label>
-        <input type="text" name="cod_livro" id="cod_livro"  value="<?php echo $linha['cod_livro']; ?> " required>
+        <input type="text" name="cod_livro" id="cod_livro"   required>
     </div>
     <div class="campo">
         <label for="hoje"><strong>Data de hoje</strong></label>
-        <input type="date" name="data_hoje" id="data_hoje"  value="<?php echo $linha['data_hoje']; ?> "  required>
+        <input type="date" name="data_hoje" id="data_hoje"    required>
     </div>
     <div class="campo">
         <label for="entrega"><strong>Data da entrega</strong></label>
-        <input type="date" name="data_entrega" id="data_entrega"   value="<?php echo $linha['data_entrega']; ?> "  required>
+        <input type="date" name="data_entrega" id="data_entrega"   required>
     </div>
 
   
 
         <!-- Botão para enviar o formulário -->
-        <button class="btn" type="submit" name="editar" onsubmit="">Cadastrar</button>            
-        <button class="btn" type="button"  onsubmit="">Voltar</button>     
+        <button class="btn" type="submit" name="editar" onsubmit="">Salvar</button>            
+        <a href="lista_emprestimos.php"><button class="btn" type="button" onsubmit="">Voltar</button> </a>        
     </form>
 
 
