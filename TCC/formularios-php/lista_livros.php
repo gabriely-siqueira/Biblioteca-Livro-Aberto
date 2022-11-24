@@ -261,11 +261,16 @@ include 'navbar.php';
     
 
 </div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+  
+
     function confirmar(cod_livro) {
         if (confirm('Você realmente deseja excluir esta linha?'))
             location.href = 'exclui_livros.php?cod_livro=' + cod_livro;
     }
+    
 </script>
 </body>
 </html>

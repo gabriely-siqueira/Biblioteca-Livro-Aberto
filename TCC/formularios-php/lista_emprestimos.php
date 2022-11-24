@@ -132,7 +132,6 @@ include('conexao.php');
   border: 3px solid #59429d;
   border-right: none;
   padding: 5px;
-  height: 40px;
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #59429d;
@@ -157,6 +156,7 @@ include('conexao.php');
 /*Resize the wrap to see the search bar change!*/
 .wrap{
   width: 25%;
+  height: 50px;
   position: absolute;
   top: 15%;
   left: 25%;
@@ -187,7 +187,7 @@ include 'navbar.php';
     </form>
 
 <div id="tabela">
-    <h1>Agendamentos cadastrados</h1>
+    <h1>Empréstimos cadastrados</h1>
     
         <table id="emprestimos">
             <td><strong>ID</strong></td>
@@ -203,8 +203,9 @@ include 'navbar.php';
         if (isset($_GET['pesquisa_emprestimo'])) {
 
             $pesquisa_emprestimo = "%" . trim($_GET['pesquisa_emprestimo']) . "%";
+            
             $sql = "select livros.titulo as titulo, leitores.nome_leitor as nome_leitor, emprestimos.cod_emprestimo as cod_emprestimo, emprestimos.data_entrega as data_entrega, emprestimos.data_hoje as data_hoje 
-            from emprestimos, leitores, livros where emprestimos.cod_livro = livros.cod_livro and emprestimos.cod_leitor = leitores.cod_leitor;'";
+            from emprestimos, leitores, livros where emprestimos.cod_livro = livros.cod_livro and emprestimos.cod_leitor = leitores.cod_leitor and nome_leitor LIKE '$pesquisa_emprestimo';";
             $query = mysqli_query($conn, $sql);
         while ($dados = mysqli_fetch_array($query)) { 
             ?>
@@ -212,9 +213,9 @@ include 'navbar.php';
             <tr>
                 <td><?php echo $dados['cod_emprestimo'] ?></td>
                 <td><?php echo $dados['nome_leitor'] ?></td>
-                <td><?php echo $dados['cod_livro'] ?></td>
-                <td><?php echo $dados['data_hoje'] ?></td>
-                <td><?php echo $dados['data_entrega'] ?></td>
+                <td><?php echo $dados['titulo'] ?></td>
+                <td><?php echo date_format(date_create($dados['data_hoje']), "d/m/Y") ?></td>
+                <td><?php echo date_format(date_create($dados['data_entrega']), "d/m/Y") ?></td>
         
                 <td colspan="2" class="">    
                 <button class="button2">
@@ -232,7 +233,7 @@ include 'navbar.php';
            
         <?php }}
         else {
-            $sql = $sql = "select livros.titulo as titulo, leitores.nome_leitor as nome_leitor, emprestimos.cod_emprestimo as cod_emprestimo, emprestimos.data_entrega as data_entrega, emprestimos.data_hoje as data_hoje 
+            $sql = "select livros.titulo as titulo, leitores.nome_leitor as nome_leitor, emprestimos.cod_emprestimo as cod_emprestimo, emprestimos.data_entrega as data_entrega, emprestimos.data_hoje as data_hoje 
             from emprestimos, leitores, livros where emprestimos.cod_livro = livros.cod_livro and emprestimos.cod_leitor = leitores.cod_leitor;";
             $query = mysqli_query($conn, $sql);
         while ($dados = mysqli_fetch_array($query)) { ?>

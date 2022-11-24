@@ -29,6 +29,8 @@ include 'navbar.php';
     <title>Leitores</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:700,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    
+
 </head>
 <body>
      

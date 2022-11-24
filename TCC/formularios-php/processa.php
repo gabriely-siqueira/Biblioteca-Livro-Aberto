@@ -1,5 +1,5 @@
 <?php
 
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT); 
+$dado = filter_input_array(INPUT_POST, FILTER_DEFAULT); 
 
-var_dump($dados);
+var_dump($dado);

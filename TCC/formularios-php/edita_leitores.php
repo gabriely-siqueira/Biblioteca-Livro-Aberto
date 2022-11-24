@@ -28,7 +28,7 @@ if (isset($_POST['editar'])) {
 
     if (mysqli_affected_rows($conn) > 0) {
         echo "<script> alert('Usuário alterado com sucesso.') </script>";
-        header("Location: leitores.php");
+        header("Location: lista_leitores.php");
     } else {
         echo "<script> alert('Ocorreu algum erro.') </script>";
     }
@@ -59,7 +59,7 @@ include 'navbar.php';
     <div> 
         <h1 id="titulo">Editar leitor</h1>
     </div>
-    <form name="cadastro_leitor" form action="edita_leitores.php?cod_leitor=<?php echo $cod_leitor ?>" method="POST">
+    <form name="cadastro_leitor" form action="edita_leitores.php?cod_leitor=<?php echo $cod_leitor ?>" method="POST" >
 
         <fieldset class="grupo">
             <!-- Campo do nome com legenda "nome" e css de classe "campo" -->

@@ -262,11 +262,14 @@ include 'navbar.php';
         <br>
     
 </div>
+
 <script>
     function confirmar(cod_leitor) {
         if (confirm('Você realmente deseja excluir esta linha?'))
-            location.href = 'exclui_leitores.php?cod_leitor=' + cod_leitor;
+        location.href = 'exclui_leitores.php?cod_leitor=' + cod_leitor;
     }
+
+  
 </script>
 </body>
 </html>

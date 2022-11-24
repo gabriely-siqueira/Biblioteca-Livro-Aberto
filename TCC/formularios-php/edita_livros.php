@@ -32,7 +32,7 @@ if (isset($_POST['editar'])) {
 
     if (mysqli_affected_rows($conn) > 0) {
         echo "<script> alert('Usuário alterado com sucesso.') </script>";
-        header("Location: livros.php");
+        header("Location: lista_livros.php");
     } else {
         echo "<script> alert('Ocorreu algum erro.') </script>";
     }
